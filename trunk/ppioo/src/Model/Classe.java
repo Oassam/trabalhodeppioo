@@ -15,5 +15,6 @@ public class Classe {
     int dano;
     int defesa;
     //TESTE DO SVN, LEMBRAR DE RETIRAR DEPOIS
+    //TESTE DO SVN e GoogleCode, LEMBRAR DE RETIRAR DEPOIS
     
 }
