@@ -1,6 +1,6 @@
 package Model;
 
-public class Personagem {
+public abstract class Personagem {
     
   String nome;
   Classe classe;
@@ -12,5 +12,9 @@ public class Personagem {
   public void setNome(String nome) {
     this.nome = nome;
   }
-    
+
+  public abstract int getDano();
+  
+  public abstract int getResistencia(); 
+  
 }
