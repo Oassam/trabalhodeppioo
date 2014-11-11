@@ -20,15 +20,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDescricao" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="218" max="-2" attributes="0"/>
+                      <Component id="lblTitulo" min="-2" pref="218" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="192" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="192" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnNovoJogo" pref="192" max="32767" attributes="0"/>
+                          <Component id="btnSair" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace pref="53" max="32767" attributes="0"/>
@@ -39,18 +42,20 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="42" max="-2" attributes="0"/>
-              <EmptySpace pref="95" max="32767" attributes="0"/>
+              <Component id="lblDescricao" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="97" max="32767" attributes="0"/>
+              <Component id="btnNovoJogo" min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnSair" min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblTitulo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Pristina" size="36" style="0"/>
@@ -61,7 +66,7 @@
         <Property name="text" type="java.lang.String" value="UEM Warriors"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="lblDescricao">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Pristina" size="24" style="0"/>
@@ -72,12 +77,23 @@
         <Property name="text" type="java.lang.String" value="Uma terra selvagem com desafios gigantescos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnNovoJogo">
       <Properties>
         <Property name="label" type="java.lang.String" value="Novo Jogo"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoJogoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSair">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sair"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Sair"/>
+      </AccessibilityProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSairActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
