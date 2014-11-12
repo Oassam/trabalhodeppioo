@@ -1,20 +1,17 @@
 package Model;
 
-public class Protagonista extends Personagem{
+public abstract class Protagonista extends Personagem{
 
-  @Override
-  public int getDano() {
-    return 0;
+  public abstract int calcularFatorIncremento();
+  
+  public void incrementarVida(Personagem personagem, int fatorIncremento){
+    personagem.setQuantidadeVida(personagem.getQuantidadeVida() + fatorIncremento);
   }
-
+  
   @Override
-  public int getResistencia() {
-    return 0;
-  }
-
-  @Override
-  public int atacar(Personagem personagemAtacado) {
-    return 0;
+  public String atacar(Personagem personagemAtacado){
+    String mensagemRetorno = personagemAtacado.reagir(this.getDano());
+    return mensagemRetorno;
   }
   
 }
