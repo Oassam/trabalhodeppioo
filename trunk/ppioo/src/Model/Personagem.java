@@ -13,7 +13,7 @@ public abstract class Personagem {
   
   public abstract int getResistencia(); 
   
-  public abstract int atacar(Personagem personagemAtacado); 
+  public abstract String atacar(Personagem personagemAtacado); 
 
   public String getNome() {
     return nomePersonagem;
@@ -36,16 +36,16 @@ public abstract class Personagem {
   }
   
   public String reagir(int reducaoVida){
-    String saida;
-    boolean defesa = Rotinas.getRandomBoolean();
+    String mensagemRetorno;
+    boolean defende = Rotinas.getRandomBoolean();
     sofrerDano(reducaoVida);
-    saida = this.getNome() + SOFREU_DANO;
+    mensagemRetorno = this.getNome() + SOFREU_DANO;
     
-    if (defesa){
+    if (defende){
       this.setQuantidadeVida(this.getResistencia());
-      saida = saida + DEFENDEU;
+      mensagemRetorno = mensagemRetorno + DEFENDEU;
     }
-    return saida;
+    return mensagemRetorno;
   }
   
 }
