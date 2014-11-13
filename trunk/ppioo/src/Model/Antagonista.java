@@ -1,12 +1,7 @@
 package Model;
 
-public abstract class Antagonista extends Personagem{
-  
-  private static final int PODER_ATAQUE = 3;
+public abstract class Antagonista extends Personagem {
 
-  @Override
-  public String atacar(Personagem personagemAtacado){
-    String mensagemRetorno = personagemAtacado.reagir(this.getDano() * PODER_ATAQUE);
-    return mensagemRetorno;
-  }
+    protected static final int PODER_ATAQUE = 3;
+
 }
