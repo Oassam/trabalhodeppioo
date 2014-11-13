@@ -3,12 +3,26 @@ package Model;
 import java.util.Random;
 
 public class Rotinas {
-  
-  public static final String SOFREU_DANO = "sofreu dano";
-  public static final String DEFENDEU = " porém se defendeu";
-  
-  public static boolean getRandomBoolean(){
-    Random novoBoolean = new Random();
-    return novoBoolean.nextBoolean();
-  }
+
+    public static final String SOFREU_DANO = "sofreu dano";
+    public static final String DEFENDEU = " porém se defendeu";
+
+    public static boolean getRandomBoolean() {
+        Random novoBoolean = new Random();
+        return novoBoolean.nextBoolean();
+    }
+
+    public static int getRandomInteger(int maximo, int minimo) {
+        Random novoInteiro = new Random();
+        int resultado = novoInteiro.nextInt(maximo);
+        
+        if (resultado == 0) {
+            return resultado + minimo;
+        } return resultado;
+    }    
+
+    public static int getRandomInteger(int maximo) {
+        Random novoInteiro = new Random();
+            return novoInteiro.nextInt(maximo);
+    }
 }
