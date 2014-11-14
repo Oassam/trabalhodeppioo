@@ -36,7 +36,7 @@ public class Guerreiro extends Antagonista {
         return mensagemSaida;
     }
 
-    public void novoGuerreiro(String nomeGuerreiro) {
+    public Guerreiro(String nomeGuerreiro) {
         setNome(nomeGuerreiro);
         setQuantidadeVida(LIFE_START);
     }

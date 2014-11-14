@@ -43,7 +43,7 @@ public class Mago extends Protagonista {
         return mensagemSaida;
     }
 
-    public void novoMago(String nomeMago) {
+    public Mago(String nomeMago) {
         setNome(nomeMago);
         setQuantidadeVida(LIFE_START);
     }
