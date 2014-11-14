@@ -28,8 +28,6 @@ public class Rotinas {
     }
     
     public static boolean pergunta(String mensagemPergunta){
-      int resultado = JOptionPane.YES_OPTION;
-      JOptionPane.showConfirmDialog(null, mensagemPergunta, "", resultado);
-      return (resultado == JOptionPane.YES_OPTION);
+      return (JOptionPane.showConfirmDialog(null, mensagemPergunta, "", JOptionPane.NO_OPTION) == JOptionPane.YES_OPTION);
     }
 }
