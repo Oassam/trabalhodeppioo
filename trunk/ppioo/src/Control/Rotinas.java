@@ -1,6 +1,7 @@
-package Model;
+package Control;
 
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 public class Rotinas {
 
@@ -24,5 +25,11 @@ public class Rotinas {
     public static int getRandomInteger(int maximo) {
         Random novoInteiro = new Random();
             return novoInteiro.nextInt(maximo);
+    }
+    
+    public static boolean pergunta(String mensagemPergunta){
+      int resultado = JOptionPane.YES_OPTION;
+      JOptionPane.showConfirmDialog(null, mensagemPergunta, "", resultado);
+      return (resultado == JOptionPane.YES_OPTION);
     }
 }

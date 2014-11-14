@@ -9,27 +9,33 @@ import Model.Protagonista;
 import javax.swing.JOptionPane;
 
 public class Acoes {
+    
+  public static final int ID_MAGO = 1;
+  public static final int ID_PALADINO = 2;
+  public static final int ID_GUERREIRO = 3;
 
     public Equipe equipeJogador;
     public Equipe equipeCPU;
 
     public Equipe selecionarPersonagem(int personagemSelecionado) {
         String nomePersonagem = JOptionPane.showInputDialog(null, "Digite o nome do personagem", "", JOptionPane.PLAIN_MESSAGE);
+        Personagem novoPersonagem; 
         switch (personagemSelecionado) {
-            case 1:
-                Mago magoEscolhido = new Mago(nomePersonagem);
-                equipeJogador.adicionaPersonagemEquipe(magoEscolhido);
+            case ID_MAGO:
+                novoPersonagem = new Mago(nomePersonagem);
+                equipeJogador.adicionaPersonagemEquipe(novoPersonagem);
                 break;
 
-            case 2:
-                Paladino paladinoEscolhido = new Paladino(nomePersonagem);
-                equipeJogador.adicionaPersonagemEquipe(paladinoEscolhido);
+            case ID_PALADINO:
+                novoPersonagem = new Paladino(nomePersonagem);
+                equipeJogador.adicionaPersonagemEquipe(novoPersonagem);
                 break;
 
-            case 3:
-                Guerreiro guerreiroEscolhido = new Guerreiro(nomePersonagem);
-                equipeJogador.adicionaPersonagemEquipe(guerreiroEscolhido);
+            case ID_GUERREIRO:
+                novoPersonagem = new Guerreiro(nomePersonagem);
+                equipeJogador.adicionaPersonagemEquipe(novoPersonagem);
                 break;
+              
             default:
                 break;
         }
