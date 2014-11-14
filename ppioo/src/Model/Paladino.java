@@ -36,7 +36,7 @@ public class Paladino extends Antagonista {
         return mensagemSaida;
     }
 
-    public void novoPaladino(String nomePaladino) {
+    public Paladino(String nomePaladino) {
         setNome(nomePaladino);
         setQuantidadeVida(LIFE_START);
     }

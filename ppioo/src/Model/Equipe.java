@@ -19,8 +19,8 @@ public class Equipe {
         ListaEquipe.add(novoPersonagem);
     }
 
-    public void removePersonagemEquipe(Personagem novoPersonagem) {
-        ListaEquipe.remove(novoPersonagem);
+    public void removePersonagemEquipe(Personagem personagem) {
+        ListaEquipe.remove(personagem);
     }
 
     public void removePersonagemPorIndice(int indice) {
