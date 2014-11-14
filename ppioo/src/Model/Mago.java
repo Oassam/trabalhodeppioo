@@ -1,6 +1,6 @@
 package Model;
 
-import static Model.Rotinas.getRandomInteger;
+import static Control.Rotinas.getRandomInteger;
 
 //Magos são pesquisadores das artes arcanas da Idade Média. 
 //Muitas vezes, em jogos e filmes, aparecem como vilões principais e como herói coadjuvante. 

@@ -1,13 +1,13 @@
 package Model;
 
-import static Model.Rotinas.DEFENDEU;
-import static Model.Rotinas.SOFREU_DANO;
+import Control.Rotinas;
+import static Control.Rotinas.DEFENDEU;
+import static Control.Rotinas.SOFREU_DANO;
 
 public abstract class Personagem {
 
     private String nomePersonagem;
     private int quantidadeVida;
-    Classe classe;
 
     public abstract int getDano();
 
