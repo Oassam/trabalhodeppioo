@@ -46,7 +46,7 @@ public class Equipe extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Personagem", "Classe", "Poder de Ataque", "Poder de Defesa", "Vida", "Próx.Ataque"
+                "Personagem", "Classe", "Poder de Ataque", "Poder de Defesa", "Vida", "Próx.Jogada"
             }
         ) {
             Class[] types = new Class [] {

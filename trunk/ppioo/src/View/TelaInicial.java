@@ -3,11 +3,11 @@ package View;
 import Control.Rotinas;
 import Model.Mago;
 import Model.Personagem;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.net.URL;
 import javafx.scene.input.DataFormat;
 import javax.swing.JOptionPane;
-import java.awt.Image;
-import java.awt.Toolkit;
 
 public class TelaInicial extends javax.swing.JFrame {
 
@@ -110,8 +110,10 @@ public class TelaInicial extends javax.swing.JFrame {
   }//GEN-LAST:event_btnSairActionPerformed
 
   private void btnNovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoJogoActionPerformed
-    Mago magoTeste = new Mago("Alguem");
-    JOptionPane.showMessageDialog(null, magoTeste.informacaoPersonagem());
+    TelaSelecaoPersonagens telaSelecaoPersonagens;
+      telaSelecaoPersonagens = new TelaSelecaoPersonagens();
+      
+      telaSelecaoPersonagens.setVisible(true);
   }//GEN-LAST:event_btnNovoJogoActionPerformed
 
   private void Fechar() {
