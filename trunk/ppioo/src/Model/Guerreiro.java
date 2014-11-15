@@ -41,4 +41,15 @@ public class Guerreiro extends Antagonista {
         setQuantidadeVida(LIFE_START);
     }
 
+  @Override
+  public String informacaoPersonagem() {
+      String lineBreak = System.lineSeparator();
+      String informacao = "";
+      informacao = informacao + "Tipo.........: Guerreiro" + lineBreak;
+      informacao = informacao + "Vida inicial.: " + Integer.toString(LIFE_START) + lineBreak;
+      informacao = informacao + "Resistencia..: " + Integer.toString(RESISTENCIA) + lineBreak;
+      informacao = informacao + "Dano.........: " + Integer.toString(DANO) + lineBreak;
+      return informacao;
+  }
+
 }

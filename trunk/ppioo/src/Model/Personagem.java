@@ -14,6 +14,8 @@ public abstract class Personagem {
     public abstract int getResistencia();
 
     public abstract String atacar(Personagem personagemAtacado);
+    
+    public abstract String informacaoPersonagem();
 
     public String getNome() {
         return nomePersonagem;
