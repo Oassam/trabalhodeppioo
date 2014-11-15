@@ -92,5 +92,9 @@ public class Acoes {
       equipeCPU.adicionaPersonagemEquipe(novoPersonagemCPU);
     }
   }
+  
+  public String getInformacaoPersonagem(Personagem personagem){
+    return personagem.informacaoPersonagem();
+  }
 
 }

@@ -40,5 +40,16 @@ public class Paladino extends Antagonista {
         setNome(nomePaladino);
         setQuantidadeVida(LIFE_START);
     }
+    
+    @Override
+    public String informacaoPersonagem(){
+      String lineBreak = System.lineSeparator();
+      String informacao = "";
+      informacao = informacao + "Tipo.........: Paladino" + lineBreak;
+      informacao = informacao + "Vida inicial.: " + Integer.toString(LIFE_START) + lineBreak;
+      informacao = informacao + "Resistencia..: " + Integer.toString(RESISTENCIA) + lineBreak;
+      informacao = informacao + "Dano.........: " + Integer.toString(DANO) + lineBreak;
+      return informacao;
+    }
 
 }

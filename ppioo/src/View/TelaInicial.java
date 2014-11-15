@@ -1,6 +1,13 @@
 package View;
 
 import Control.Rotinas;
+import Model.Mago;
+import Model.Personagem;
+import java.net.URL;
+import javafx.scene.input.DataFormat;
+import javax.swing.JOptionPane;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class TelaInicial extends javax.swing.JFrame {
 
@@ -103,7 +110,8 @@ public class TelaInicial extends javax.swing.JFrame {
   }//GEN-LAST:event_btnSairActionPerformed
 
   private void btnNovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoJogoActionPerformed
-    // TODO add your handling code here:
+    Mago magoTeste = new Mago("Alguem");
+    JOptionPane.showMessageDialog(null, magoTeste.informacaoPersonagem());
   }//GEN-LAST:event_btnNovoJogoActionPerformed
 
   private void Fechar() {
@@ -111,7 +119,7 @@ public class TelaInicial extends javax.swing.JFrame {
       dispose();
     }
   }
-
+  
   /**
    * @param args the command line arguments
    */
@@ -145,6 +153,7 @@ public class TelaInicial extends javax.swing.JFrame {
         new TelaInicial().setVisible(true);
       }
     });
+    
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -154,4 +163,5 @@ public class TelaInicial extends javax.swing.JFrame {
   private javax.swing.JLabel lblDescricao;
   private javax.swing.JLabel lblTitulo;
   // End of variables declaration//GEN-END:variables
+
 }
