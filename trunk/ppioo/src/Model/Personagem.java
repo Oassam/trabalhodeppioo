@@ -8,6 +8,7 @@ public abstract class Personagem {
 
     private String nomePersonagem;
     private int quantidadeVida;
+    private Equipe equipe;
 
     public abstract int getDano();
 
@@ -49,5 +50,22 @@ public abstract class Personagem {
         }
         return mensagemRetorno;
     }
+
+    public String getNomePersonagem() {
+        return nomePersonagem;
+    }
+
+    public void setNomePersonagem(String nomePersonagem) {
+        this.nomePersonagem = nomePersonagem;
+    }
+
+    public Equipe getEquipe() {
+        return equipe;
+    }
+
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
+    }
+
 
 }

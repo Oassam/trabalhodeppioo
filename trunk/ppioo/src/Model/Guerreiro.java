@@ -13,6 +13,10 @@ public class Guerreiro extends Antagonista {
     private static final int LIFE_START = 500;
     private int contador = 0;
 
+    public Guerreiro() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public int getDano() {
         return DANO;

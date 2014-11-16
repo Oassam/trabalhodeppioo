@@ -6,8 +6,15 @@
 
 package View;
 
+import Control.Acoes;
+import Model.Equipe;
+import Model.Guerreiro;
+import Model.Mago;
+import Model.Paladino;
+import Model.Personagem;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -35,7 +42,7 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nomeEquipe = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -93,6 +100,11 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
         });
 
         jButton2.setText("Jogar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setLabel("+");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +136,7 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nomeEquipe, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -137,7 +149,7 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeEquipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -157,14 +169,10 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         TableColumn sportColumn = table.getColumnModel().getColumn(1);
-      
         JComboBox comboBox = new JComboBox();
-        comboBox.addItem("Snowboarding");
-        comboBox.addItem("Rowing");
-        comboBox.addItem("Chasing toddlers");
-        comboBox.addItem("Speed reading");
-        comboBox.addItem("Teaching high school");
-        comboBox.addItem("None");
+        comboBox.addItem("Guerreiro");
+        comboBox.addItem("Paladino");
+        comboBox.addItem("Mago");
         sportColumn.setCellEditor(new DefaultCellEditor(comboBox));
         
     }//GEN-LAST:event_formWindowOpened
@@ -179,6 +187,58 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
       DefaultTableModel model = (DefaultTableModel) table.getModel();
       model.removeRow(table.getRowCount()-1);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       Model.Equipe equipeUsuario = new Equipe();
+       equipeUsuario.setNome(nomeEquipe.getText());
+       for(int i=0; i < table.getRowCount(); i++){
+             Personagem p;
+             if (table.getModel().getValueAt(i, 1) == "Guerreiro") {               
+               p = new Guerreiro((String) table.getModel().getValueAt(i, 0));
+             } 
+             else if (table.getModel().getValueAt(i, 1) == "Paladino") {
+               p = new Paladino((String) table.getModel().getValueAt(i, 0));
+             } else if (table.getModel().getValueAt(i, 1) == "Mago") {
+               p = new Mago((String) table.getModel().getValueAt(i, 0));
+             } else {
+                 JOptionPane.showMessageDialog(rootPane, "Existe um personagem sem classe!");
+                 break;
+             }
+            if (table.getModel().getValueAt(i, 3).equals(true)) {               
+              // define que é protagonista 
+             } 
+            else if (table.getModel().getValueAt(i, 4).equals(true)) {
+               // define que é antagonista
+             }
+            p.setEquipe(equipeUsuario);
+         }
+       
+       //definindo equipe do adversario
+       Model.Equipe equipeAdversario = new Equipe();
+       equipeAdversario.setNome("Barbarians from Hell");
+       for(int i=0; i < table.getRowCount(); i++){
+             Personagem p;
+             if (table.getModel().getValueAt(i, 1) == "Guerreiro") {               
+               p = new Guerreiro((String) table.getModel().getValueAt(i, 0));
+             } 
+             else if (table.getModel().getValueAt(i, 1) == "Paladino") {
+               p = new Paladino((String) table.getModel().getValueAt(i, 0));
+             } else if (table.getModel().getValueAt(i, 1) == "Mago") {
+               p = new Mago((String) table.getModel().getValueAt(i, 0));
+             } else {
+                 JOptionPane.showMessageDialog(rootPane, "Existe um personagem sem classe!");
+                 break;
+             }
+            if (table.getModel().getValueAt(i, 3).equals(true)) {               
+              // define que é protagonista 
+             } 
+            else if (table.getModel().getValueAt(i, 4).equals(true)) {
+               // define que é antagonista
+             }
+            p.setEquipe(equipeAdversario);
+         }
+      
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,7 +282,7 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nomeEquipe;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

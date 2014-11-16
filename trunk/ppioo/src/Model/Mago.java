@@ -14,6 +14,10 @@ public class Mago extends Protagonista {
     private static final int LIFE_START = 800;
     private int contador = 0;
 
+    public Mago() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public int calcularFatorIncremento() {
         int fatorIncremento = (getQuantidadeVida() / 2);

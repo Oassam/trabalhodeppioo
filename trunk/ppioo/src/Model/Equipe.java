@@ -4,6 +4,8 @@ import java.awt.List;
 import java.util.ArrayList;
 
 public class Equipe {
+    
+    private String nome;
 
     private ArrayList<Personagem> ListaEquipe;
 
@@ -33,6 +35,14 @@ public class Equipe {
         } else {
             return ListaEquipe.get(indicePersonagem);
         }
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }
