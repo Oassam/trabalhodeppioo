@@ -7,7 +7,10 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 import javafx.scene.input.DataFormat;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableColumn;
 
 public class TelaInicial extends javax.swing.JFrame {
 
@@ -114,6 +117,9 @@ public class TelaInicial extends javax.swing.JFrame {
       telaSelecaoPersonagens = new TelaSelecaoPersonagens();
       
       telaSelecaoPersonagens.setVisible(true);
+      
+      
+
   }//GEN-LAST:event_btnNovoJogoActionPerformed
 
   private void Fechar() {
