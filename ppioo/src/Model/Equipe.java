@@ -10,7 +10,7 @@ public class Equipe {
     private ArrayList<Personagem> ListaEquipe;
 
     public void novaEquipe() {
-        ListaEquipe = new ArrayList<Personagem>();
+        ListaEquipe = new ArrayList<>();
     }
 
     public ArrayList<Personagem> getListaEquipe() {
