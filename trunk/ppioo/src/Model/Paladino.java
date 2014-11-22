@@ -9,6 +9,30 @@ public class Paladino extends Antagonista {
     private static final int DANO = 15;
     private static final int RESISTENCIA = 12;
     private static final int CRITICO = 10;
+
+    public static int getDANO() {
+        return DANO;
+    }
+
+    public static int getRESISTENCIA() {
+        return RESISTENCIA;
+    }
+
+    public static int getCRITICO() {
+        return CRITICO;
+    }
+
+    public static int getQTDE_ATAQUE_COMBO() {
+        return QTDE_ATAQUE_COMBO;
+    }
+
+    public static int getLIFE_START() {
+        return LIFE_START;
+    }
+
+    public static int getPODER_ATAQUE() {
+        return PODER_ATAQUE;
+    }
     private static final int QTDE_ATAQUE_COMBO = 3;
     private static final int LIFE_START = 600;
     private int contador = 0;

@@ -6,6 +6,30 @@ package Model;
 //fazendo com que o guerreiro se adapte a situação com mais facilidade que muitas classes.
 public class Guerreiro extends Antagonista {
 
+    public static int getDANO() {
+        return DANO;
+    }
+
+    public static int getRESISTENCIA() {
+        return RESISTENCIA;
+    }
+
+    public static int getCRITICO() {
+        return CRITICO;
+    }
+
+    public static int getQTDE_ATAQUE_COMBO() {
+        return QTDE_ATAQUE_COMBO;
+    }
+
+    public static int getLIFE_START() {
+        return LIFE_START;
+    }
+
+    public static int getPODER_ATAQUE() {
+        return PODER_ATAQUE;
+    }
+
     private static final int DANO = 30;
     private static final int RESISTENCIA = 50;
     private static final int CRITICO = 10;

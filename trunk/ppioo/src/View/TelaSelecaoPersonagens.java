@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package View;
 
 import Control.Acoes;
@@ -62,10 +61,6 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -170,74 +165,33 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         TableColumn sportColumn = table.getColumnModel().getColumn(1);
         JComboBox comboBox = new JComboBox();
-        comboBox.addItem("Guerreiro");
-        comboBox.addItem("Paladino");
         comboBox.addItem("Mago");
+        comboBox.addItem("Paladino");
+        comboBox.addItem("Guerreiro");
         sportColumn.setCellEditor(new DefaultCellEditor(comboBox));
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      DefaultTableModel model = (DefaultTableModel) table.getModel();
-      model.addRow(new Object[]{"", "",false,false});
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(new Object[]{"", "", false, false});
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      DefaultTableModel model = (DefaultTableModel) table.getModel();
-      model.removeRow(table.getRowCount()-1);
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.removeRow(table.getRowCount() - 1);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       Model.Equipe equipeUsuario = new Equipe();
-       equipeUsuario.setNome(nomeEquipe.getText());
-       for(int i=0; i < table.getRowCount(); i++){
-             Personagem p;
-             if (table.getModel().getValueAt(i, 1) == "Guerreiro") {               
-               p = new Guerreiro((String) table.getModel().getValueAt(i, 0));
-             } 
-             else if (table.getModel().getValueAt(i, 1) == "Paladino") {
-               p = new Paladino((String) table.getModel().getValueAt(i, 0));
-             } else if (table.getModel().getValueAt(i, 1) == "Mago") {
-               p = new Mago((String) table.getModel().getValueAt(i, 0));
-             } else {
-                 JOptionPane.showMessageDialog(rootPane, "Existe um personagem sem classe!");
-                 break;
-             }
-            if (table.getModel().getValueAt(i, 3).equals(true)) {               
-              // define que é protagonista 
-             } 
-            else if (table.getModel().getValueAt(i, 4).equals(true)) {
-               // define que é antagonista
-             }
-            p.setEquipe(equipeUsuario);
-         }
-       
-       //definindo equipe do adversario
-       Model.Equipe equipeAdversario = new Equipe();
-       equipeAdversario.setNome("Barbarians from Hell");
-       for(int i=0; i < table.getRowCount(); i++){
-             Personagem p;
-             if (table.getModel().getValueAt(i, 1) == "Guerreiro") {               
-               p = new Guerreiro((String) table.getModel().getValueAt(i, 0));
-             } 
-             else if (table.getModel().getValueAt(i, 1) == "Paladino") {
-               p = new Paladino((String) table.getModel().getValueAt(i, 0));
-             } else if (table.getModel().getValueAt(i, 1) == "Mago") {
-               p = new Mago((String) table.getModel().getValueAt(i, 0));
-             } else {
-                 JOptionPane.showMessageDialog(rootPane, "Existe um personagem sem classe!");
-                 break;
-             }
-            if (table.getModel().getValueAt(i, 3).equals(true)) {               
-              // define que é protagonista 
-             } 
-            else if (table.getModel().getValueAt(i, 4).equals(true)) {
-               // define que é antagonista
-             }
-            p.setEquipe(equipeAdversario);
-         }
-      
+        Acoes.iniciaJogo(nomeEquipe.getText());
+        for (int i = 0; i < table.getRowCount(); i++) {
+            Acoes.selecionarPersonagem(Acoes.getIdByPersonagemName(table.getModel().getValueAt(i, 1).toString()), table.getModel().getValueAt(i, 0).toString());
+        }
+        Acoes.iniciaEquipeCPU();
+        TelaCombate telaCombate = new TelaCombate();
+        telaCombate.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
