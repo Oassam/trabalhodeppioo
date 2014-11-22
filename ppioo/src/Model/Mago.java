@@ -24,6 +24,26 @@ public class Mago extends Protagonista {
         return fatorIncremento - getRandomInteger(getQuantidadeVida() / 2);
     }
 
+    public static int getDANO() {
+        return DANO;
+    }
+
+    public static int getRESISTENCIA() {
+        return RESISTENCIA;
+    }
+
+    public static int getCRITICO() {
+        return CRITICO;
+    }
+
+    public static int getQTDE_ATAQUE_COMBO() {
+        return QTDE_ATAQUE_COMBO;
+    }
+
+    public static int getLIFE_START() {
+        return LIFE_START;
+    }
+
     @Override
     public int getDano() {
         return DANO;

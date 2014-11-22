@@ -10,30 +10,29 @@ import javax.swing.JOptionPane;
 
 public class Acoes {
 
-  public static final int ID_MAGO = 1;
-  public static final int ID_PALADINO = 2;
-  public static final int ID_GUERREIRO = 3;
+  public static final int ID_MAGO = 0;
+  public static final int ID_PALADINO = 1;
+  public static final int ID_GUERREIRO = 2;
 
-  public Equipe equipeJogador;
-  public Equipe equipeCPU;
+  private static Equipe equipeJogador;
+  private static Equipe equipeCPU;
 
-  public Equipe selecionarPersonagem(int personagemSelecionado) {
-    String nomePersonagem = JOptionPane.showInputDialog(null, "Digite o nome do personagem", "", JOptionPane.PLAIN_MESSAGE);
+  public static Equipe selecionarPersonagem(int idPersonagem, String nomePersonagem) {
     Personagem novoPersonagem;
-    switch (personagemSelecionado) {
+    switch (idPersonagem) {
       case ID_MAGO:
         novoPersonagem = new Mago(nomePersonagem);
-        equipeJogador.adicionaPersonagemEquipe(novoPersonagem);
+        equipeJogador.adicionaPersonagemEquipeJogador(novoPersonagem);
         break;
 
       case ID_PALADINO:
         novoPersonagem = new Paladino(nomePersonagem);
-        equipeJogador.adicionaPersonagemEquipe(novoPersonagem);
+        equipeJogador.adicionaPersonagemEquipeJogador(novoPersonagem);
         break;
 
       case ID_GUERREIRO:
         novoPersonagem = new Guerreiro(nomePersonagem);
-        equipeJogador.adicionaPersonagemEquipe(novoPersonagem);
+        equipeJogador.adicionaPersonagemEquipeJogador(novoPersonagem);
         break;
 
       default:
@@ -42,24 +41,49 @@ public class Acoes {
     return equipeJogador;
   }
 
-  public void iniciaJogo() {
+  public static void iniciaJogo(String nomeEquipe) {
     equipeCPU = new Equipe();
+    equipeCPU.EquipeCPU();
+    equipeCPU.setNomeCPU("Adversário");
     equipeJogador = new Equipe();
+    equipeJogador.EquipeJogador();
+    equipeJogador.setNomeJogador(nomeEquipe);
   }
-
-  public boolean jogoTerminado(Equipe equipe) {
-    return (equipe.getPersonagem(0) == null);
-  }
-
-  public void atualizaEquipe(Equipe equipe) {
-    for (Personagem personagem : equipe.getListaEquipe()) {
-      if (personagem.getQuantidadeVida() < 1) {
-        equipe.removePersonagemEquipe(personagem);
+  
+  public static int getIdByPersonagemName(String nome){
+      switch (nome) {
+          case "Mago":
+              return ID_MAGO;
+          case "Guerreiro":
+              return ID_GUERREIRO;
+          default:
+              return ID_PALADINO;
       }
-    }
   }
 
-  public void atacarAdversario(Personagem agressor, Personagem atacado) {
+    public static Equipe getEquipeJogador() {
+        return equipeJogador;
+    }
+
+    public static Equipe getEquipeCPU() {
+        return equipeCPU;
+    }
+  
+  public boolean jogoTerminado() {
+    return (equipeCPU.getPersonagemCPU(0) == null) || (equipeJogador.getPersonagemJogador(0) == null);
+  }
+
+  public static void atualizaEquipe() {
+      equipeCPU.getListaEquipeCPU().stream().filter((personagem) -> (personagem.getQuantidadeVida() < 1)).forEach((personagem) -> {
+          equipeCPU.removePersonagemEquipeCPU(personagem);
+      });
+      
+      equipeJogador.getListaEquipeJogador().stream().filter((personagem) -> (personagem.getQuantidadeVida() < 1)).forEach((personagem) -> {
+          equipeJogador.removePersonagemEquipeJogador(personagem);
+      });
+  }
+
+  public static void atacarAdversario(Personagem agressor, Personagem atacado) {
     if (atacado.getQuantidadeVida() > 0) {
       JOptionPane.showMessageDialog(null, agressor.atacar(atacado));
     } else {
@@ -67,17 +91,18 @@ public class Acoes {
     }
   }
 
-  public void regeneraAliado(Protagonista curador, Personagem regenerado) {
+  public static void regeneraAliado(Protagonista curador, Personagem regenerado) {
     curador.incrementarVida(regenerado, curador.calcularFatorIncremento());
   }
 
-  public void iniciaEquipeCPU() {
+  public static void iniciaEquipeCPU() {
     int contadorMago = 1;
     int contadorPaladino = 1;
     int contadorGuerreiro = 1;
-    
-    for (Personagem personagem : equipeJogador.getListaEquipe()) {
+    int controle = Acoes.getEquipeJogador().getListaEquipeJogador().size();
+    for (int i = 0;i < controle; i++) {
       Personagem novoPersonagemCPU;
+      Personagem personagem = Acoes.getEquipeJogador().getPersonagemJogador(i);
       if (personagem instanceof Mago) {
         novoPersonagemCPU = new Mago("Mago" + Integer.toString(contadorMago));
         contadorMago++;
@@ -88,8 +113,7 @@ public class Acoes {
         novoPersonagemCPU = new Guerreiro("Guerreiro" + Integer.toString(contadorGuerreiro));
         contadorGuerreiro++;
       }
-
-      equipeCPU.adicionaPersonagemEquipe(novoPersonagemCPU);
+      equipeCPU.adicionaPersonagemEquipeCPU(novoPersonagemCPU);
     }
   }
   
