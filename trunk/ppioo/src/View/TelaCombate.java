@@ -46,7 +46,6 @@ public class TelaCombate extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -152,6 +151,11 @@ public class TelaCombate extends javax.swing.JFrame {
         buttonGroup1.add(Atacar);
         Atacar.setSelected(true);
         Atacar.setText("Atacar");
+        Atacar.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                AtacarStateChanged(evt);
+            }
+        });
 
         buttonGroup1.add(Curar);
         Curar.setText("Curar");
@@ -167,7 +171,6 @@ public class TelaCombate extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,8 +196,9 @@ public class TelaCombate extends javax.swing.JFrame {
                                 .addComponent(recebeAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(Acao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Sair)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                                .addComponent(Sair))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -232,24 +236,22 @@ public class TelaCombate extends javax.swing.JFrame {
         for (int i = 0; i < controle; i++) {
             DefaultTableModel model = (DefaultTableModel) tblEquipeJogador.getModel();
             model.addRow(new Object[]{Acoes.getEquipeJogador().getPersonagemJogador(i).getNome(),
-                Acoes.getEquipeJogador().getPersonagemJogador(i).getClass().getName(), 
-                Acoes.getEquipeJogador().getPersonagemJogador(i).getDano() ,
-                Acoes.getEquipeJogador().getPersonagemJogador(i).getResistencia(), 
+                Acoes.getEquipeJogador().getPersonagemJogador(i).getClass().getName(),
+                Acoes.getEquipeJogador().getPersonagemJogador(i).getDano(),
+                Acoes.getEquipeJogador().getPersonagemJogador(i).getResistencia(),
                 Acoes.getEquipeJogador().getPersonagemJogador(i).getQuantidadeVida()});
-            realizaAcao.addItem(Acoes.getEquipeJogador().getPersonagemJogador(i).getNome());            
+            realizaAcao.addItem(Acoes.getEquipeJogador().getPersonagemJogador(i).getNome());
         }
-        
+
         for (int i = 0; i < controle; i++) {
             DefaultTableModel model = (DefaultTableModel) tblEquipeCPU.getModel();
             model.addRow(new Object[]{Acoes.getEquipeCPU().getPersonagemCPU(i).getNome(),
-                Acoes.getEquipeCPU().getPersonagemCPU(i).getClass().getName(), 
-                Acoes.getEquipeCPU().getPersonagemCPU(i).getDano() ,
-                Acoes.getEquipeCPU().getPersonagemCPU(i).getResistencia(), 
+                Acoes.getEquipeCPU().getPersonagemCPU(i).getClass().getName(),
+                Acoes.getEquipeCPU().getPersonagemCPU(i).getDano(),
+                Acoes.getEquipeCPU().getPersonagemCPU(i).getResistencia(),
                 Acoes.getEquipeCPU().getPersonagemCPU(i).getQuantidadeVida()});
-             recebeAcao.addItem(Acoes.getEquipeCPU().getPersonagemCPU(i).getNome());
+            recebeAcao.addItem(Acoes.getEquipeCPU().getPersonagemCPU(i).getNome());
         }
-        
-        
 
         nomeEquipeCPU.setText(Acoes.getEquipeCPU().getNomeJogador());
         nomeEquipeJogador.setText(Acoes.getEquipeJogador().getNomeJogador());
@@ -260,53 +262,83 @@ public class TelaCombate extends javax.swing.JFrame {
     }//GEN-LAST:event_SairActionPerformed
 
     private void AcaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcaoActionPerformed
-        if (Atacar.isSelected()){
-            Acoes.atacarAdversario(Acoes.getEquipeJogador().getPersonagemJogador(realizaAcao.getSelectedIndex()), 
+        if (Atacar.isSelected()) {
+            Acoes.atacarAdversario(Acoes.getEquipeJogador().getPersonagemJogador(realizaAcao.getSelectedIndex()),
                     Acoes.getEquipeCPU().getPersonagemCPU(recebeAcao.getSelectedIndex()));
+            Acoes.atualizaEquipe();
+            Acoes.atacarAdversario(Acoes.getEquipeCPU().getPersonagemCPU(recebeAcao.getSelectedIndex()),
+                    Acoes.getEquipeJogador().getPersonagemJogador(realizaAcao.getSelectedIndex()));
+        } else {
+            Acoes.regeneraAliado((Protagonista) Acoes.getEquipeJogador().getPersonagemJogador(realizaAcao.getSelectedIndex()),
+                    Acoes.getEquipeJogador().getPersonagemJogador(realizaAcao.getSelectedIndex()));
+            Acoes.atualizaEquipe();
+            Acoes.atacarAdversario(Acoes.getEquipeCPU().getPersonagemCPU(0),
+                    Acoes.getEquipeJogador().getPersonagemJogador(0));
+            Atacar.setSelected(true);
+            Curar.setSelected(false);
         }
-        else{
-           Acoes.regeneraAliado((Protagonista) Acoes.getEquipeJogador().getPersonagemJogador(realizaAcao.getSelectedIndex()), 
-                    Acoes.getEquipeJogador().getPersonagemJogador(realizaAcao.getSelectedIndex()));  
-           Atacar.setSelected(true);
-           Curar.setSelected(false);
-        }
-        
-        Acoes.atualizaEquipe();
-        
+
         int controle = Acoes.getEquipeJogador().getListaEquipeJogador().size();
         DefaultTableModel model = (DefaultTableModel) tblEquipeJogador.getModel();
-        if (model.getRowCount() > 0){  
-            for (int i=0;i<model.getRowCount();i++){  
-                model.removeRow(i);  
-            }      
+        if (model.getRowCount() > 0) {
+            int linhas = model.getRowCount();
+            for (int i = 0; i < linhas; i++) {
+                model.removeRow(0);
+            }
         }
         controle = Acoes.getEquipeJogador().getListaEquipeCPU().size();
         model = (DefaultTableModel) tblEquipeCPU.getModel();
-        if (model.getRowCount() > 0){  
-            for (int i=0;i<model.getRowCount();i++){  
-                model.removeRow(i);  
-            }  
+        if (model.getRowCount() > 0) {
+            int linhas = model.getRowCount();
+            for (int i = 0; i < linhas; i++) {
+                model.removeRow(0);
+            }
         }
-          
+        realizaAcao.removeAllItems();
+        recebeAcao.removeAllItems();
         for (int i = 0; i < controle; i++) {
             model = (DefaultTableModel) tblEquipeJogador.getModel();
             model.addRow(new Object[]{Acoes.getEquipeJogador().getPersonagemJogador(i).getNome(),
-                Acoes.getEquipeJogador().getPersonagemJogador(i).getClass().getName(), 
-                Acoes.getEquipeJogador().getPersonagemJogador(i).getDano() ,
-                Acoes.getEquipeJogador().getPersonagemJogador(i).getResistencia(), 
+                Acoes.getEquipeJogador().getPersonagemJogador(i).getClass().getName(),
+                Acoes.getEquipeJogador().getPersonagemJogador(i).getDano(),
+                Acoes.getEquipeJogador().getPersonagemJogador(i).getResistencia(),
                 Acoes.getEquipeJogador().getPersonagemJogador(i).getQuantidadeVida()});
-                realizaAcao.addItem(Acoes.getEquipeJogador().getPersonagemJogador(i).getNome());     
+            realizaAcao.addItem(Acoes.getEquipeJogador().getPersonagemJogador(i).getNome());
         }
         for (int i = 0; i < controle; i++) {
             model = (DefaultTableModel) tblEquipeCPU.getModel();
             model.addRow(new Object[]{Acoes.getEquipeCPU().getPersonagemCPU(i).getNome(),
-                Acoes.getEquipeCPU().getPersonagemCPU(i).getClass().getName(), 
-                Acoes.getEquipeCPU().getPersonagemCPU(i).getDano() ,
-                Acoes.getEquipeCPU().getPersonagemCPU(i).getResistencia(), 
+                Acoes.getEquipeCPU().getPersonagemCPU(i).getClass().getName(),
+                Acoes.getEquipeCPU().getPersonagemCPU(i).getDano(),
+                Acoes.getEquipeCPU().getPersonagemCPU(i).getResistencia(),
                 Acoes.getEquipeCPU().getPersonagemCPU(i).getQuantidadeVida()});
-                recebeAcao.addItem(Acoes.getEquipeCPU().getPersonagemCPU(i).getNome());
+            recebeAcao.addItem(Acoes.getEquipeCPU().getPersonagemCPU(i).getNome());
         }
     }//GEN-LAST:event_AcaoActionPerformed
+
+    private void AtacarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AtacarStateChanged
+        realizaAcao.removeAllItems();
+        recebeAcao.removeAllItems();
+        int controle = Acoes.getEquipeJogador().getListaEquipeJogador().size();
+        if (Atacar.isSelected()) {
+            for (int i = 0; i < controle; i++) {
+                realizaAcao.addItem(Acoes.getEquipeJogador().getPersonagemJogador(i).getNome());
+            }
+            controle = Acoes.getEquipeCPU().getListaEquipeCPU().size();
+            for (int i = 0; i < controle; i++) {
+                recebeAcao.addItem(Acoes.getEquipeCPU().getPersonagemCPU(i).getNome());
+            }
+        } else {
+            controle = Acoes.getEquipeJogador().getListaEquipeJogador().size();
+            for (int i = 0; i < controle; i++) {
+                if (Acoes.getEquipeJogador().getPersonagemJogador(i).getClass().getName() == "Model.Mago"){
+                    realizaAcao.addItem(Acoes.getEquipeJogador().getPersonagemJogador(i).getNome());
+                }
+                recebeAcao.addItem(Acoes.getEquipeJogador().getPersonagemJogador(i).getNome());
+            }
+        }
+
+    }//GEN-LAST:event_AtacarStateChanged
 
     /**
      * @param args the command line arguments

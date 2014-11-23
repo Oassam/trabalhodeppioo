@@ -61,14 +61,14 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null}
             },
             new String [] {
-                "Nome do Personagem", "Classe", "É protagonista?", "É antagonista?"
+                "Nome do Personagem", "Classe"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -81,10 +81,6 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
             table.getColumnModel().getColumn(0).setPreferredWidth(350);
             table.getColumnModel().getColumn(1).setResizable(false);
             table.getColumnModel().getColumn(1).setPreferredWidth(350);
-            table.getColumnModel().getColumn(2).setResizable(false);
-            table.getColumnModel().getColumn(2).setPreferredWidth(180);
-            table.getColumnModel().getColumn(3).setResizable(false);
-            table.getColumnModel().getColumn(3).setPreferredWidth(180);
         }
 
         jButton1.setText("Cancelar");
@@ -174,7 +170,7 @@ public class TelaSelecaoPersonagens extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(new Object[]{"", "", false, false});
+        model.addRow(new Object[]{"", ""});
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

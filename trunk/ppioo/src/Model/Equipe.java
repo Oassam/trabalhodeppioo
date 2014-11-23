@@ -72,7 +72,7 @@ public class Equipe {
 
     public static Personagem getPersonagemCPU(int indicePersonagem) {
         if (indicePersonagem >= ListaEquipeCPU.size()) {
-            throw new IndexOutOfBoundsException("Nenhum personagem encontrado nessa posicao na equipe na equipe.");
+            throw new IndexOutOfBoundsException("Nenhum personagem encontrado nessa posicao na equipe.");
         } else {
             return ListaEquipeCPU.get(indicePersonagem);
         }

@@ -55,7 +55,7 @@ public class Guerreiro extends Antagonista {
     public String atacar(Personagem personagemAtacado) {
         String mensagemSaida;
         if (contador < QTDE_ATAQUE_COMBO) {
-            mensagemSaida = personagemAtacado.reagir(this.getDano() * PODER_ATAQUE);
+            mensagemSaida = personagemAtacado.reagir(this.getDano());
             contador++;
         } else {
             mensagemSaida = personagemAtacado.reagir(this.getDano() * CRITICO);

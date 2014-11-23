@@ -56,7 +56,7 @@ public class Mago extends Protagonista {
 
     @Override
     public String atacar(Personagem personagemAtacado) {
-        String mensagemSaida;
+       String mensagemSaida;
         if (contador < QTDE_ATAQUE_COMBO) {
             mensagemSaida = personagemAtacado.reagir(this.getDano());
             contador++;
