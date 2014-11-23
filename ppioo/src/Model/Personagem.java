@@ -41,11 +41,19 @@ public abstract class Personagem {
         String mensagemRetorno;
         boolean defende = Rotinas.getRandomBoolean();
         sofrerDano(reducaoVida);
-        mensagemRetorno = this.getNome() + SOFREU_DANO;
+        mensagemRetorno = this.getNome()+" " + SOFREU_DANO;
 
         if (defende) {
-            this.setQuantidadeVida(this.getResistencia());
-            mensagemRetorno = mensagemRetorno + DEFENDEU;
+            if (this.getResistencia() <= reducaoVida) {
+                this.setQuantidadeVida(this.getQuantidadeVida() - ( reducaoVida+this.getResistencia()));
+            }
+            mensagemRetorno = " "+mensagemRetorno + DEFENDEU;
+        }else
+        {
+            this.setQuantidadeVida(this.getQuantidadeVida() - reducaoVida);
+        }
+        if (this.getQuantidadeVida() < 0){
+            this.setQuantidadeVida(0);
         }
         return mensagemRetorno;
     }
